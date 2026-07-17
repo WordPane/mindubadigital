@@ -1,0 +1,109 @@
+# =====================================================================
+# Minduba Digital — .htaccess (OpenLiteSpeed / Apache)
+# Cache, compressão, MIME, segurança e rotas do site estático
+# ---------------------------------------------------------------------
+# Nota OpenLiteSpeed: alterações no .htaccess podem exigir reload do
+# servidor (no cPanel/hospedagens gerenciadas isso é automático).
+# =====================================================================
+
+# ---- Página inicial e charset
+DirectoryIndex index.html
+AddDefaultCharset UTF-8
+
+# ---- Desativa listagem de diretórios
+Options -Indexes
+
+# ---- Página de erro personalizada
+ErrorDocument 404 /404.html
+
+# ---- MIME types extras
+<IfModule mod_mime.c>
+  AddType application/manifest+json .webmanifest
+  AddType font/woff2 .woff2
+</IfModule>
+
+# ---------------------------------------------------------------------
+# Compressão GZIP (Apache mod_deflate; no OpenLiteSpeed a compressão
+# já acontece no nível do servidor — este bloco é ignorado com segurança)
+# ---------------------------------------------------------------------
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain
+  AddOutputFilterByType DEFLATE application/javascript application/json
+  AddOutputFilterByType DEFLATE application/manifest+json
+  AddOutputFilterByType DEFLATE image/svg+xml text/xml application/xml
+</IfModule>
+
+# ---------------------------------------------------------------------
+# Cache-Control
+# - /_astro/* tem hash no nome do arquivo (css, js, woff2): 1 ano imutável
+# - imagens (logos, favicon, og-image): 1 mês
+# - html/manifest/xml: sempre revalidar (deploy aparece na hora)
+# ---------------------------------------------------------------------
+<IfModule mod_headers.c>
+  <FilesMatch "\.(css|js|woff2?)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+
+  <FilesMatch "\.(webp|png|jpe?g|gif|svg|ico|avif)$">
+    Header set Cache-Control "public, max-age=2592000"
+  </FilesMatch>
+
+  <FilesMatch "\.(html|webmanifest|xml|txt)$">
+    Header set Cache-Control "public, max-age=0, must-revalidate"
+  </FilesMatch>
+</IfModule>
+
+# ---- Expires (fallback para hosts sem mod_headers)
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType font/woff2 "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 month"
+  ExpiresByType image/png "access plus 1 month"
+  ExpiresByType image/jpeg "access plus 1 month"
+  ExpiresByType image/svg+xml "access plus 1 month"
+  ExpiresByType image/x-icon "access plus 1 month"
+  ExpiresByType text/html "access plus 0 seconds"
+  ExpiresByType application/manifest+json "access plus 0 seconds"
+</IfModule>
+
+# ---- ETag enxuto
+FileETag MTime Size
+
+# ---------------------------------------------------------------------
+# Headers de segurança
+# ---------------------------------------------------------------------
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+  Header unset X-Powered-By
+
+  # HSTS — ative SOMENTE depois que o HTTPS estiver funcionando:
+  # Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+</IfModule>
+
+# ---------------------------------------------------------------------
+# Redirecionamentos — DESCOMENTE depois que o SSL estiver ativo:
+# força HTTPS e redireciona www → domínio raiz (mesmo do canonical)
+# ---------------------------------------------------------------------
+# <IfModule mod_rewrite.c>
+#   RewriteEngine On
+#
+#   # HTTP → HTTPS
+#   RewriteCond %{HTTPS} off
+#   RewriteRule ^(.*)$ https://mindubadigital.com.br/$1 [R=301,L]
+#
+#   # www → não-www
+#   RewriteCond %{HTTP_HOST} ^www\.mindubadigital\.com\.br$ [NC]
+#   RewriteRule ^(.*)$ https://mindubadigital.com.br/$1 [R=301,L]
+# </IfModule>
+
+# ---------------------------------------------------------------------
+# Proteções básicas
+# ---------------------------------------------------------------------
+<FilesMatch "^\.ht">
+  Require all denied
+</FilesMatch>

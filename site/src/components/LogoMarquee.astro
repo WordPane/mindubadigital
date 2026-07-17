@@ -1,0 +1,140 @@
+---
+const logos = [
+  { file: 'alpha', name: 'Alpha', w: 395 },
+  { file: 'Ativa', name: 'Ativa', w: 265 },
+  { file: 'Bioage-GO-DF', name: 'Bioage GO/DF', w: 82 },
+  { file: 'Carla-Guimaraes', name: 'Carla Guimarães', w: 223 },
+  { file: 'Corpo-Bueno', name: 'Corpo Bueno', w: 250 },
+  { file: 'Cris-Rayes', name: 'Cris Rayes', w: 161 },
+  { file: 'Dentes-Lindos', name: 'Dentes Lindos', w: 200 },
+  { file: 'dinamica-purificadores', name: 'Dinâmica Purificadores', w: 257 },
+  { file: 'Dr-Leonardo-Magalhaes', name: 'Dr. Leonardo Magalhães', w: 152 },
+  { file: 'Estoque-Bem', name: 'Estoque Bem', w: 280 },
+  { file: 'Evolutivo', name: 'Evolutivo', w: 340 },
+  { file: 'Florss-Produtos-para-cabelo', name: 'Florss', w: 81 },
+  { file: 'foten', name: 'Foten', w: 225 },
+  { file: 'Grupo-Greener', name: 'Grupo Greener', w: 212 },
+  { file: 'Iese-Especializacao', name: 'IESE Especialização', w: 104 },
+  { file: 'Insigma', name: 'Insigma', w: 65 },
+  { file: 'JR-Enxovais', name: 'JR Enxovais', w: 99 },
+  { file: 'Lex-BPO', name: 'Lex BPO', w: 295 },
+  { file: 'Mercadotica', name: 'Mercadótica', w: 233 },
+  { file: 'mori-consulting', name: 'Mori Consulting', w: 166 },
+  { file: 'Oliveira-Internacoes', name: 'Oliveira Internações', w: 221 },
+  { file: 'Open-Chopp', name: 'Open Chopp', w: 67 },
+  { file: 'Otica-Mercadotica', name: 'Ótica Mercadótica', w: 233 },
+  { file: 'Park-Education', name: 'Park Education', w: 153 },
+  { file: 'Prado', name: 'Prado', w: 266 },
+  { file: 'Sangiorgio', name: 'Sangiorgio', w: 295 },
+  { file: 'Semen-Plus', name: 'Semen Plus', w: 98 },
+  { file: 'Serra-Mudancas', name: 'Serra Mudanças', w: 79 },
+  { file: 'Sexsteps', name: 'Sexsteps', w: 262 },
+  { file: 'Sigma-Contabilidade', name: 'Sigma Contabilidade', w: 261 },
+  { file: 'Strauss', name: 'Strauss', w: 169 },
+  { file: 'Super-Visao-Goiania', name: 'Super Visão Goiânia', w: 316 },
+  { file: 'TRN-Engenharia', name: 'TRN Engenharia', w: 142 },
+  { file: 'Valcon-Contabilidade', name: 'Valcon Contabilidade', w: 133 },
+];
+---
+
+<section class="clients" id="clientes" aria-labelledby="clients-title">
+  <div class="container">
+    <div class="section-head center reveal">
+      <h2 id="clients-title" class="clients-title">
+        Empresas que escolheram <span class="text-gradient">crescer com estratégia</span>
+      </h2>
+      <p class="clients-sub">
+        De pequenas marcas a negócios em expansão: ajudamos empresas a vender
+        mais, se posicionar melhor e atrair os clientes certos.
+      </p>
+    </div>
+
+    <ul class="logo-wall reveal">
+      {logos.map((logo) => (
+        <li>
+          <img
+            src={`/logos/${logo.file}.webp`}
+            alt={`Logo ${logo.name}`}
+            width={logo.w}
+            height="70"
+            class={logo.w >= 250 ? 'l' : logo.w <= 110 ? 's' : 'm'}
+            loading="lazy"
+            decoding="async"
+          />
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .clients {
+    padding-block: clamp(3rem, 7vw, 5rem);
+    background: var(--c-bg-soft);
+    border-block: 1px solid var(--c-border);
+  }
+
+  .clients-title {
+    text-align: center;
+    font-size: clamp(1.35rem, 2.6vw, 1.75rem);
+    margin-bottom: 0.75rem;
+  }
+
+  .clients-sub {
+    text-align: center;
+    color: var(--c-muted);
+    max-width: 40rem;
+    margin: 0 auto;
+    font-size: 1rem;
+  }
+
+  .clients .section-head {
+    margin-bottom: clamp(2rem, 5vw, 3rem);
+  }
+
+  /* logo wall estilo astro.build: brancas, centralizadas, sem hover */
+  .logo-wall {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: clamp(1.6rem, 3.5vw, 2.75rem) clamp(2rem, 4.5vw, 3.5rem);
+  }
+
+  .logo-wall li {
+    display: flex;
+  }
+
+  .logo-wall img {
+    width: auto;
+    object-fit: contain;
+    /* imagens já normalizadas em branco puro (alpha reforçado) */
+    opacity: 0.9;
+  }
+
+  .logo-wall img.s {
+    height: 1.9rem;
+  }
+
+  .logo-wall img.m {
+    height: 2.3rem;
+  }
+
+  .logo-wall img.l {
+    height: 2.7rem;
+  }
+
+  @media (max-width: 34rem) {
+    .logo-wall img.s {
+      height: 1.5rem;
+    }
+
+    .logo-wall img.m {
+      height: 1.8rem;
+    }
+
+    .logo-wall img.l {
+      height: 2.1rem;
+    }
+  }
+</style>

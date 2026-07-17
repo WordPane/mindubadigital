@@ -1,0 +1,155 @@
+---
+const testimonials = [
+  {
+    name: 'Carla Guimarães',
+    text: 'Sempre fui extremamente bem atendida e orientada pela equipe. Meus sites foram desenvolvidos com extrema qualidade e, sempre que preciso de algum ajuste, tudo é resolvido com muita rapidez e eficiência. Indico de olhos fechados.',
+  },
+  {
+    name: 'Danilo Maranhão',
+    text: 'Atenção no acompanhamento e nos resultados. A gente percebe um parceiro que está junto no projeto. Um modelo de trabalho que não se encontra facilmente no mercado. Muito bom mesmo.',
+  },
+  {
+    name: 'Gerson Mori',
+    text: 'Minha experiência com a Minduba foi excelente. Trabalho muito profissional, atenção acima da média. Recomendo 100%.',
+  },
+  {
+    name: 'Joedson Martins Cardoso',
+    text: 'A entrega do serviço foi muito rápida, o atendimento ótimo e a qualidade da página ficou muito boa. Com certeza indico para quem precisar de site ou páginas de vendas.',
+  },
+  {
+    name: 'Jerusa Pedrosa',
+    text: 'Experiência incrível, não somente na criação, mas no acompanhamento, prazo, explicação e pós-venda. Somente posso agradecer e desejar muito sucesso a toda a equipe.',
+  },
+  {
+    name: 'Silvia Nadal',
+    text: 'Produziram nosso site maravilhosamente bem e atenderam todas as nossas expectativas. A Minduba Digital fez a diferença para a nossa empresa.',
+  },
+];
+---
+
+<section class="section testimonials" id="depoimentos" aria-labelledby="testimonials-title">
+  <div class="container">
+    <div class="section-head center reveal">
+      <p class="eyebrow">Quem confia, recomenda</p>
+      <h2 class="section-title" id="testimonials-title">
+        Avaliação <span class="text-gradient">5,0 no Google</span>
+      </h2>
+      <p class="section-sub">
+        Selo "Excelente" com base em 22 avaliações reais no Google — escritas
+        por quem trabalhou lado a lado com a gente.
+      </p>
+    </div>
+
+    <div class="testimonials-grid">
+      {testimonials.map((item) => (
+        <figure class="testimonial reveal">
+          <div class="testimonial-stars" role="img" aria-label="Avaliação: 5 de 5 estrelas">
+            {Array.from({ length: 5 }).map(() => (
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+              </svg>
+            ))}
+          </div>
+          <blockquote>{item.text}</blockquote>
+          <figcaption>
+            <span class="testimonial-avatar" aria-hidden="true">{item.name.charAt(0)}</span>
+            <span>
+              <strong>{item.name}</strong>
+              <small>Avaliação no Google</small>
+            </span>
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .testimonials {
+    background: var(--c-bg-soft);
+    border-block: 1px solid var(--c-border);
+  }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+
+  .testimonial {
+    display: flex;
+    flex-direction: column;
+    padding: 1.75rem;
+    background: var(--c-card);
+    border: 1px solid var(--c-border);
+    border-radius: var(--radius);
+    transition: border-color 0.3s ease, transform 0.3s ease;
+  }
+
+  .testimonial:hover {
+    border-color: rgba(255, 107, 0, 0.4);
+    transform: translateY(-4px);
+  }
+
+  .testimonial-stars {
+    display: flex;
+    gap: 2px;
+    color: #ffc531;
+    margin-bottom: 1rem;
+  }
+
+  blockquote {
+    color: var(--c-text);
+    font-size: 0.9625rem;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
+  }
+
+  figcaption {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    margin-top: auto;
+  }
+
+  figcaption > span:last-child {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.35;
+  }
+
+  figcaption strong {
+    font-size: 0.9375rem;
+  }
+
+  figcaption small {
+    color: var(--c-muted);
+    font-size: 0.8125rem;
+  }
+
+  .testimonial-avatar {
+    display: grid;
+    place-items: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 50%;
+    font-family: var(--font-display);
+    font-weight: 700;
+    color: #fff;
+    background: var(--gradient);
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 62rem) {
+    .testimonials-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 40rem) {
+    .testimonials-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

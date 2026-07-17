@@ -1,0 +1,221 @@
+---
+import { site, whatsappLink, waMessages } from '../data/site';
+
+const year = new Date().getFullYear();
+
+const nav = [
+  { label: 'Serviços', href: '#servicos' },
+  { label: 'Processo', href: '#processo' },
+  { label: 'Cases', href: '#cases' },
+  { label: 'Depoimentos', href: '#depoimentos' },
+  { label: 'FAQ', href: '#faq' },
+];
+---
+
+<footer class="footer" id="contato">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <a href="#topo" class="brand">
+        <img src="/logo-mark.png" alt="" width="44" height="44" class="brand-mark" />
+        <span class="brand-text">
+          <strong>MINDUBA</strong>
+          <small><em>AGÊNCIA</em> DIGITAL</small>
+        </span>
+      </a>
+      <p>
+        Tráfego pago, sites que vendem e presença digital com propósito.
+        A gente cuida do marketing para você cuidar do seu negócio.
+      </p>
+      <div class="social">
+        <a href={site.social.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram da Minduba Digital">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg>
+        </a>
+        <a href={site.social.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook da Minduba Digital">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+        <a href={site.social.behance} target="_blank" rel="noopener noreferrer" aria-label="Behance da Minduba Digital">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8.84 10.83c.84-.4 1.37-1.2 1.37-2.33 0-2.35-1.8-2.98-4.06-2.98H1v12.5h5.42c2.5 0 4.71-1.05 4.71-3.53 0-1.54-.74-2.7-2.29-3.66ZM3.76 7.6h2.02c.97 0 1.68.26 1.68 1.25 0 .96-.6 1.28-1.4 1.28H3.76V7.6Zm2.36 8.3H3.76v-3.02h2.45c1.22 0 1.9.48 1.9 1.55 0 1.13-.78 1.47-1.99 1.47ZM21.62 7h-5v1.5h5V7Zm-2.44 3.03c-2.53 0-4.2 1.83-4.2 4.35 0 2.58 1.62 4.29 4.27 4.29 2.1 0 3.42-.97 3.96-2.75h-2.14c-.32.74-.99 1.1-1.8 1.1-1.3 0-1.99-.83-2.05-2.14h6.02v-.55c0-2.5-1.45-4.3-4.06-4.3Zm-1.98 3.43c.14-1.06.86-1.78 1.94-1.78 1.14 0 1.73.75 1.84 1.78h-3.78Z"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <nav class="footer-nav" aria-label="Links do rodapé">
+      <h3>Navegação</h3>
+      <ul>
+        {nav.map((item) => (
+          <li><a href={item.href}>{item.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+
+    <div class="footer-contact">
+      <h3>Contato</h3>
+      <ul>
+        <li>
+          <a href={whatsappLink(waMessages.default)} target="_blank" rel="noopener noreferrer">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.297-.497.1-.198.05-.371-.025-.52-.074-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413"/></svg>
+            WhatsApp: {site.phoneDisplay}
+          </a>
+        </li>
+        <li>
+          <a href={`mailto:${site.email}`}>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+            {site.email}
+          </a>
+        </li>
+      </ul>
+      <a class="btn btn-primary footer-cta" href={whatsappLink(waMessages.orcamento)} target="_blank" rel="noopener noreferrer">
+        Pedir orçamento grátis
+      </a>
+    </div>
+  </div>
+
+  <div class="container footer-bottom">
+    <p>© {year} Minduba Digital. Todos os direitos reservados.</p>
+    <p>Feito com muito energético, boas ideias e <span aria-label="coração">❤️</span> pela Minduba Digital.</p>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: var(--c-bg-soft);
+    border-top: 1px solid var(--c-border);
+    padding-top: clamp(3rem, 7vw, 5rem);
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 0.8fr 1fr;
+    gap: clamp(2.5rem, 6vw, 4rem);
+    padding-bottom: 3rem;
+  }
+
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+  }
+
+  .brand-mark {
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+
+  .brand-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.05;
+    font-family: var(--font-display);
+  }
+
+  .brand-text strong {
+    font-size: 1.1rem;
+    letter-spacing: 0.06em;
+  }
+
+  .brand-text small {
+    font-size: 0.62rem;
+    letter-spacing: 0.22em;
+    color: var(--c-muted);
+  }
+
+  .brand-text small em {
+    font-style: normal;
+    color: var(--c-orange);
+  }
+
+  .footer-brand > p {
+    color: var(--c-muted);
+    font-size: 0.9375rem;
+    margin: 1.25rem 0 1.5rem;
+    max-width: 24rem;
+  }
+
+  .social {
+    display: flex;
+    gap: 0.75rem;
+  }
+
+  .social a {
+    display: grid;
+    place-items: center;
+    width: 2.6rem;
+    height: 2.6rem;
+    border-radius: 0.8rem;
+    color: var(--c-muted);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--c-border);
+    transition: color 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+  }
+
+  .social a:hover {
+    color: var(--c-orange);
+    border-color: rgba(255, 107, 0, 0.45);
+    transform: translateY(-3px);
+  }
+
+  .footer h3 {
+    font-size: 0.875rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--c-muted);
+    margin-bottom: 1.25rem;
+  }
+
+  .footer-nav ul,
+  .footer-contact ul {
+    display: grid;
+    gap: 0.7rem;
+  }
+
+  .footer-nav a {
+    color: var(--c-muted);
+    font-size: 0.9375rem;
+    transition: color 0.2s ease;
+  }
+
+  .footer-nav a:hover {
+    color: var(--c-text);
+  }
+
+  .footer-contact a:not(.btn) {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: var(--c-muted);
+    font-size: 0.9375rem;
+    transition: color 0.2s ease;
+  }
+
+  .footer-contact a:not(.btn):hover {
+    color: var(--c-text);
+  }
+
+  .footer-contact svg {
+    color: var(--c-orange);
+    flex-shrink: 0;
+  }
+
+  .footer-cta {
+    margin-top: 1.5rem;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9375rem;
+  }
+
+  .footer-bottom {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.5rem 1.5rem;
+    padding-block: 1.5rem;
+    border-top: 1px solid var(--c-border);
+    color: var(--c-muted);
+    font-size: 0.875rem;
+  }
+
+  @media (max-width: 56rem) {
+    .footer-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

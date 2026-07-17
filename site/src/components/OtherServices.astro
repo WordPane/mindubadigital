@@ -1,0 +1,153 @@
+---
+import { whatsappLink, waMessages } from '../data/site';
+
+const services = [
+  {
+    title: 'Gestão de Redes Sociais',
+    description:
+      'Conteúdo estratégico que educa, cria autoridade e nutre sua audiência — sem perder o foco na conversão. Chega de postar por postar.',
+    link: whatsappLink(waMessages.redesSociais),
+    icon: 'social',
+  },
+  {
+    title: 'Soluções Estratégicas',
+    description:
+      'Diagnóstico profundo do seu negócio e um plano de ação sob medida: o serviço certo, no momento certo, para destravar o crescimento.',
+    link: whatsappLink(waMessages.estrategia),
+    icon: 'strategy',
+  },
+  {
+    title: 'SEO e Conteúdo',
+    description:
+      'Conteúdo planejado com base em buscas reais e técnicas de SEO para atrair visitas qualificadas e gerar demanda contínua.',
+    link: whatsappLink(waMessages.default),
+    icon: 'seo',
+  },
+  {
+    title: 'Identidade Visual',
+    description:
+      'Marcas fortes nascem de diferenciação. Identidade visual e posicionamento que reforçam sua autoridade desde o primeiro contato.',
+    link: whatsappLink(waMessages.default),
+    icon: 'brand',
+  },
+];
+
+const icons: Record<string, string> = {
+  social: '<path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5Z"/>',
+  strategy: '<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>',
+  seo: '<circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><path d="M8 11h6M11 8v6"/>',
+  brand: '<path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/>',
+};
+---
+
+<section class="section other-services" aria-labelledby="other-services-title">
+  <div class="container">
+    <div class="section-head center reveal">
+      <p class="eyebrow">Além de sites e tráfego</p>
+      <h2 class="section-title" id="other-services-title">
+        O restante do seu digital <span class="text-gradient">também fica com a gente</span>
+      </h2>
+      <p class="section-sub">
+        Redes sociais, SEO, identidade visual e estratégia: as outras frentes
+        do marketing entram no plano quando fizerem sentido para o seu momento.
+      </p>
+    </div>
+
+    <div class="grid">
+      {services.map((service) => (
+        <article class="card reveal">
+          <div class="card-icon" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" set:html={icons[service.icon]} />
+          </div>
+          <h3>{service.title}</h3>
+          <p>{service.description}</p>
+          <a class="card-link" href={service.link} target="_blank" rel="noopener noreferrer">
+            Saiba mais
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M5 12h14M13 6l6 6-6 6" />
+            </svg>
+          </a>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .other-services {
+    background: var(--c-bg-soft);
+    border-block: 1px solid var(--c-border);
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+  }
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    padding: 1.75rem;
+    background: var(--c-card);
+    border: 1px solid var(--c-border);
+    border-radius: var(--radius);
+    transition: transform 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+  }
+
+  .card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(255, 107, 0, 0.4);
+    background: var(--c-card-hover);
+  }
+
+  .card-icon {
+    display: grid;
+    place-items: center;
+    width: 3.25rem;
+    height: 3.25rem;
+    border-radius: 0.9rem;
+    color: var(--c-orange);
+    background: rgba(255, 107, 0, 0.1);
+    border: 1px solid rgba(255, 107, 0, 0.25);
+    margin-bottom: 1.25rem;
+  }
+
+  .card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .card p {
+    color: var(--c-muted);
+    font-size: 0.9375rem;
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
+  }
+
+  .card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-weight: 600;
+    font-size: 0.9375rem;
+    color: var(--c-orange);
+    transition: gap 0.25s ease;
+  }
+
+  .card-link:hover {
+    gap: 0.65rem;
+  }
+
+  @media (max-width: 56rem) {
+    .grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 34rem) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

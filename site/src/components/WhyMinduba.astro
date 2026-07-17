@@ -1,0 +1,154 @@
+---
+const differentials = [
+  {
+    title: 'Imersão no seu negócio',
+    description:
+      'Antes de sugerir qualquer solução, a gente mergulha no seu contexto, entende suas metas e identifica o que realmente precisa ser feito.',
+    icon: '<circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>',
+  },
+  {
+    title: 'Plano com começo, meio e fim',
+    description:
+      'Nada de ideias soltas. Montamos um plano claro, por etapas, com foco em objetivos reais — da estruturação até a conversão.',
+    icon: '<path d="M9 11H5a2 2 0 0 0-2 2v7h6v-9Zm10 0h-4v9h6v-7a2 2 0 0 0-2-2ZM9 3 3 8m6-5 6 5"/>',
+  },
+  {
+    title: 'Trabalho lado a lado',
+    description:
+      'Você não fica no escuro. Mantemos o diálogo constante, ajustamos o que for preciso e celebramos cada evolução juntos.',
+    icon: '<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>',
+  },
+  {
+    title: 'Foco em performance, não em promessas',
+    description:
+      'Nosso compromisso é com o que funciona: estratégia baseada em dados, comportamento do público e experiência real de mercado.',
+    icon: '<path d="M3 3v18h18"/><path d="m7 15 4-6 4 3 5-8"/>',
+  },
+];
+---
+
+<section class="section why" aria-labelledby="why-title">
+  <div class="container why-grid">
+    <div class="why-intro reveal">
+      <p class="eyebrow">Por que a Minduba</p>
+      <h2 class="section-title" id="why-title">
+        Compromisso de verdade com o <span class="text-gradient">seu resultado</span>
+      </h2>
+      <p class="section-sub">
+        Aqui, seu sucesso não é um número no relatório. A gente veste a camisa,
+        entende o seu mercado e trabalha junto para fazer a estratégia dar
+        certo de verdade.
+      </p>
+      <div class="why-stat">
+        <span class="why-stat-number text-gradient">5.0</span>
+        <span class="why-stat-label">
+          avaliação máxima no Google,<br />com 22 avaliações de clientes reais
+        </span>
+      </div>
+    </div>
+
+    <ul class="why-list">
+      {differentials.map((item) => (
+        <li class="why-card reveal">
+          <div class="why-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" set:html={item.icon} />
+          </div>
+          <div>
+            <h3>{item.title}</h3>
+            <p>{item.description}</p>
+          </div>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .why-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.15fr;
+    gap: clamp(2.5rem, 6vw, 5rem);
+    align-items: start;
+  }
+
+  .why-intro {
+    position: sticky;
+    top: 7rem;
+  }
+
+  .why-stat {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    margin-top: 2.5rem;
+    padding: 1.5rem;
+    background: var(--c-card);
+    border: 1px solid var(--c-border);
+    border-radius: var(--radius);
+  }
+
+  .why-stat-number {
+    font-family: var(--font-display);
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .why-stat-label {
+    color: var(--c-muted);
+    font-size: 0.9375rem;
+    line-height: 1.5;
+  }
+
+  .why-list {
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .why-card {
+    display: flex;
+    gap: 1.25rem;
+    padding: 1.75rem;
+    background: var(--c-card);
+    border: 1px solid var(--c-border);
+    border-radius: var(--radius);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+  }
+
+  .why-card:hover {
+    transform: translateX(6px);
+    border-color: rgba(255, 107, 0, 0.4);
+  }
+
+  .why-icon {
+    display: grid;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
+    flex-shrink: 0;
+    border-radius: 0.85rem;
+    color: var(--c-orange);
+    background: rgba(255, 107, 0, 0.1);
+    border: 1px solid rgba(255, 107, 0, 0.25);
+  }
+
+  .why-card h3 {
+    font-size: 1.15rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .why-card p {
+    color: var(--c-muted);
+    font-size: 0.9375rem;
+  }
+
+  @media (max-width: 56rem) {
+    .why-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .why-intro {
+      position: static;
+    }
+  }
+</style>

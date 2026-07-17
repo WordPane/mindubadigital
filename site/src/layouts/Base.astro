@@ -1,0 +1,182 @@
+---
+import '../styles/global.css';
+import interFont from '@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url';
+import spaceGroteskFont from '@fontsource-variable/space-grotesk/files/space-grotesk-latin-wght-normal.woff2?url';
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+
+const localBusiness = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  '@id': 'https://mindubadigital.com.br/#organization',
+  name: 'Minduba Digital',
+  url: 'https://mindubadigital.com.br/',
+  logo: 'https://mindubadigital.com.br/favicon.png',
+  image: 'https://mindubadigital.com.br/og-image.png',
+  description,
+  telephone: '+55-62-99322-4062',
+  email: 'comercial@mindubadigital.com.br',
+  priceRange: '$$',
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Goiânia',
+    addressRegion: 'GO',
+    addressCountry: 'BR',
+  },
+  areaServed: { '@type': 'Country', name: 'Brasil' },
+  sameAs: [
+    'https://www.facebook.com/mindubadigital',
+    'https://www.instagram.com/mindubadigital/',
+    'https://www.behance.net/mindubadigital',
+  ],
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: '5.0',
+    bestRating: '5',
+    reviewCount: '22',
+  },
+  review: [
+    {
+      '@type': 'Review',
+      author: { '@type': 'Person', name: 'Carla Guimarães' },
+      reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
+      reviewBody:
+        'Sempre fui extremamente bem atendida e orientada pela equipe. Meus sites foram desenvolvidos com extrema qualidade e, sempre que preciso de algum ajuste, tudo é resolvido com muita rapidez e eficiência. Indico de olhos fechados.',
+    },
+    {
+      '@type': 'Review',
+      author: { '@type': 'Person', name: 'Danilo Maranhão' },
+      reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
+      reviewBody:
+        'Atenção no acompanhamento e nos resultados. A gente percebe um parceiro que está junto no projeto. Um modelo de trabalho que não se encontra facilmente no mercado. Muito bom mesmo.',
+    },
+    {
+      '@type': 'Review',
+      author: { '@type': 'Person', name: 'Gerson Mori' },
+      reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
+      reviewBody:
+        'Minha experiência com a Minduba foi excelente. Trabalho muito profissional, atenção acima da média. Recomendo 100%.',
+    },
+    {
+      '@type': 'Review',
+      author: { '@type': 'Person', name: 'Joedson Martins Cardoso' },
+      reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
+      reviewBody:
+        'A entrega do serviço foi muito rápida, o atendimento ótimo e a qualidade da página ficou muito boa. Com certeza indico para quem precisar de site ou páginas de vendas.',
+    },
+    {
+      '@type': 'Review',
+      author: { '@type': 'Person', name: 'Jerusa Pedrosa' },
+      reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
+      reviewBody:
+        'Experiência incrível, não somente na criação, mas no acompanhamento, prazo, explicação e pós-venda. Somente posso agradecer e desejar muito sucesso a toda a equipe.',
+    },
+    {
+      '@type': 'Review',
+      author: { '@type': 'Person', name: 'Silvia Nadal' },
+      reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
+      reviewBody:
+        'Produziram nosso site maravilhosamente bem e atenderam todas as nossas expectativas. A Minduba Digital fez a diferença para a nossa empresa.',
+    },
+  ],
+  makesOffer: [
+    { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Gestão de Tráfego Pago' } },
+    { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Criação de Sites e Landing Pages' } },
+    { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Gestão de Redes Sociais' } },
+    { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Soluções Estratégicas de Marketing Digital' } },
+  ],
+};
+
+const webPage = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  '@id': canonical,
+  url: canonical,
+  name: title,
+  description,
+  inLanguage: 'pt-BR',
+  isPartOf: { '@id': 'https://mindubadigital.com.br/#organization' },
+  about: { '@id': 'https://mindubadigital.com.br/#organization' },
+};
+---
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="theme-color" content="#0d0d0d" />
+
+    <link rel="preconnect" href="https://www.googletagmanager.com" />
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <link rel="preload" href={interFont} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={spaceGroteskFont} as="font" type="font/woff2" crossorigin />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:site_name" content="Minduba Digital" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content="https://mindubadigital.com.br/og-image.png" />
+    <meta property="og:image:secure_url" content="https://mindubadigital.com.br/og-image.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Minduba Digital — Agência de Marketing Digital" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content="https://mindubadigital.com.br/og-image.png" />
+    <meta name="twitter:image:alt" content="Minduba Digital — Agência de Marketing Digital" />
+
+    <script type="application/ld+json" set:html={JSON.stringify(localBusiness)} />
+    <script type="application/ld+json" set:html={JSON.stringify(webPage)} />
+    <slot name="head" />
+
+    {/* Google Tag Manager — dataLayer ativo já; gtm.js injetado só após o load,
+        fora do caminho crítico de renderização (GTM-TZSQXLN) */}
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+      (function loadGTM() {
+        var inject = function () {
+          var s = document.createElement('script');
+          s.async = true;
+          s.src = 'https://www.googletagmanager.com/gtm.js?id=GTM-TZSQXLN';
+          document.head.appendChild(s);
+        };
+        if (document.readyState === 'complete') inject();
+        else window.addEventListener('load', inject, { once: true });
+      })();
+    </script>
+  </head>
+  <body>
+    {/* Google Tag Manager (noscript) */}
+    <noscript>
+      <iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-TZSQXLN"
+        height="0"
+        width="0"
+        style="display:none;visibility:hidden"
+        title="Google Tag Manager"></iframe>
+    </noscript>
+    <slot />
+  </body>
+</html>

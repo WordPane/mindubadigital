@@ -1,0 +1,613 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+/* ---- cases de redes sociais (prints de Instagram) ---- */
+const caseImages = import.meta.glob<{ default: ImageMetadata }>(
+  '../assets/cases/*.webp',
+  { eager: true }
+);
+
+const caseNames: Record<string, string> = {
+  'Barbela-Insta': 'Grupo Barbela',
+  'BR-Energy-Insta': 'BR Energy',
+  'Crokitos-Insta': 'Crokitos',
+  'Dentes-Lindos-Insta': 'Dentes Lindos',
+  'Estoque-Bem-Insta': 'Estoque Bem',
+  'Grupo-Plus-Insta': 'Grupo Plus',
+  'LexBPO-Insta': 'Lex BPO',
+  'Mori-Comex-Insta': 'Mori Comex',
+};
+
+const cases = Object.entries(caseImages)
+  .map(([path, mod]) => {
+    const key = path.split('/').pop()?.replace('.webp', '') ?? '';
+    return { image: mod.default, name: caseNames[key] ?? key };
+  })
+  .sort((a, b) => a.name.localeCompare(b.name));
+
+/* ---- cases de sites criados (screenshots full-page) ---- */
+const siteImages = import.meta.glob<{ default: ImageMetadata }>(
+  '../assets/sites/*.webp',
+  { eager: true }
+);
+
+const siteNames: Record<string, string> = {
+  'Beretta-e-Souza-scaled': 'Beretta e Souza',
+  'Infinity-Brazil-scaled': 'Infinity Brazil',
+  'Premedical-scaled': 'Premedical',
+  'Site-Barbela-scaled': 'Grupo Barbela',
+  'Site-Bioage-Goias-scaled': 'Bioage Goiás',
+  'Site-Carla-Guimaraes-scaled': 'Carla Guimarães',
+  'Site-Dentes-lindos-scaled': 'Dentes Lindos',
+  'Site-IESE-scaled': 'IESE Especialização',
+  'Site-Mori-scaled': 'Mori Comex',
+  'Site-Sangiorgio-scaled': 'Sangiorgio',
+  'WSRocha-scaled': 'WS Rocha',
+};
+
+const siteCases = Object.entries(siteImages)
+  .map(([path, mod]) => {
+    const key = path.split('/').pop()?.replace('.webp', '') ?? '';
+    return { image: mod.default, name: siteNames[key] ?? key };
+  })
+  .sort((a, b) => a.name.localeCompare(b.name));
+---
+
+<section class="section cases" id="cases" aria-labelledby="cases-title">
+  <div class="container">
+    <div class="section-head center reveal">
+      <p class="eyebrow">Cases reais</p>
+      <h2 class="section-title" id="cases-title">
+        Projetos que <span class="text-gradient">impulsionam negócios</span>
+      </h2>
+      <p class="section-sub">
+        Alguns dos projetos que saíram do papel com a gente — sites, landing
+        pages e perfis que viraram vitrine (e canal de vendas) dos nossos clientes.
+      </p>
+    </div>
+  </div>
+
+  {/* ---- grupo 1: sites criados ---- */}
+  <div class="cases-group reveal">
+    <h3 class="group-title">Sites e landing pages criados</h3>
+
+    <div class="cases-carousel" data-interval="6500" tabindex="0" aria-label="Carrossel de sites criados — role horizontalmente">
+      <ul class="cases-track">
+        {siteCases.map((item) => (
+          <li class="case-card site-card">
+            <div class="site-browser">
+              <span class="browser-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+              <span class="browser-title">{item.name}</span>
+            </div>
+            <div class="site-shot">
+              <Image
+                src={item.image}
+                alt={`Site de ${item.name} criado pela Minduba Digital`}
+                widths={[640, 832, 1152]}
+                sizes="(max-width: 40rem) 86vw, 26rem"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          </li>
+        ))}
+      </ul>
+      {/* trilha duplicada para o loop infinito */}
+      <ul class="cases-track" aria-hidden="true">
+        {siteCases.map((item) => (
+          <li class="case-card site-card">
+            <div class="site-browser">
+              <span class="browser-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+              <span class="browser-title">{item.name}</span>
+            </div>
+            <div class="site-shot">
+              <Image
+                src={item.image}
+                alt=""
+                widths={[640, 832, 1152]}
+                sizes="(max-width: 40rem) 86vw, 26rem"
+                loading="eager"
+                decoding="async"
+              />
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <div class="cases-dots" role="tablist" aria-label="Navegar pelos cases de sites">
+      {siteCases.map((item, index) => (
+        <button
+          class="cases-dot"
+          role="tab"
+          aria-selected={index === 0 ? 'true' : 'false'}
+          aria-label={`Ir para o site ${item.name}`}
+          data-index={index}
+        />
+      ))}
+    </div>
+  </div>
+
+  {/* ---- grupo 2: redes sociais ---- */}
+  <div class="cases-group reveal">
+    <h3 class="group-title">Redes sociais gerenciadas</h3>
+
+    <div class="cases-carousel" data-interval="4500" tabindex="0" aria-label="Carrossel de cases de redes sociais — role horizontalmente">
+      <ul class="cases-track">
+        {cases.map((item) => (
+          <li class="case-card">
+            <Image
+              src={item.image}
+              alt={`Perfil do Instagram de ${item.name}, gerenciado pela Minduba Digital`}
+              widths={[480, 640, 768]}
+              sizes="(max-width: 40rem) 86vw, 27rem"
+              loading="lazy"
+              decoding="async"
+            />
+            <span class="case-name">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/>
+              </svg>
+              {item.name}
+            </span>
+          </li>
+        ))}
+      </ul>
+      {/* trilha duplicada para o loop infinito */}
+      <ul class="cases-track" aria-hidden="true">
+        {cases.map((item) => (
+          <li class="case-card">
+            <Image
+              src={item.image}
+              alt=""
+              widths={[480, 640, 768]}
+              sizes="(max-width: 40rem) 86vw, 27rem"
+              loading="eager"
+              decoding="async"
+            />
+            <span class="case-name">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/>
+              </svg>
+              {item.name}
+            </span>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <div class="cases-dots" role="tablist" aria-label="Navegar pelos cases de redes sociais">
+      {cases.map((item, index) => (
+        <button
+          class="cases-dot"
+          role="tab"
+          aria-selected={index === 0 ? 'true' : 'false'}
+          aria-label={`Ir para o case ${item.name}`}
+          data-index={index}
+        />
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  /* ---- carrosséis: loop infinito, dots e autoplay (uma instância por trilho) ---- */
+  document.querySelectorAll<HTMLElement>('.cases-carousel').forEach((carousel) => {
+    const group = carousel.closest('.cases-group');
+    const tracks = carousel.querySelectorAll<HTMLElement>('.cases-track');
+    const dots = group
+      ? Array.from(group.querySelectorAll<HTMLButtonElement>('.cases-dot'))
+      : [];
+    const total = dots.length;
+    const interval = Number(carousel.dataset.interval ?? 4500);
+
+    // largura exata de um conjunto de cards (período do loop)
+    const loopWidth = () =>
+      tracks.length > 1 ? tracks[1].offsetLeft - tracks[0].offsetLeft : 0;
+
+    // salto instantâneo (sem snap) para o ponto idêntico do loop
+    let jumping = false;
+    let animating = false;
+    const jump = (delta: number) => {
+      jumping = true;
+      carousel.style.scrollSnapType = 'none';
+      carousel.scrollLeft += delta;
+      carousel.style.scrollSnapType = '';
+      requestAnimationFrame(() => { jumping = false; });
+    };
+
+    const step = () => {
+      const card = carousel.querySelector<HTMLElement>('.case-card');
+      return card ? card.offsetWidth + 20 : 320;
+    };
+
+    const updateDots = () => {
+      if (!total) return;
+      const active = ((Math.round(carousel.scrollLeft / step()) % total) + total) % total;
+      dots.forEach((dot, index) =>
+        dot.setAttribute('aria-selected', String(index === active))
+      );
+    };
+
+    const handleLoop = () => {
+      if (jumping || animating) return;
+      const lw = loopWidth();
+      if (!lw) return;
+      if (carousel.scrollLeft >= lw) jump(-lw);
+      else if (carousel.scrollLeft <= 0) jump(lw);
+    };
+
+    dots.forEach((dot) =>
+      dot.addEventListener('click', () => {
+        const index = Number(dot.dataset.index ?? 0);
+        carousel.scrollTo({ left: index * step(), behavior: 'smooth' });
+      })
+    );
+
+    carousel.addEventListener(
+      'scroll',
+      () => {
+        handleLoop();
+        updateDots();
+      },
+      { passive: true }
+    );
+
+    // começa no segundo conjunto para haver espaço de rolagem nas duas direções
+    carousel.scrollLeft = loopWidth();
+    updateDots();
+
+    /* rolagem automática suave, com pausas em interação, aba inativa
+       ou seção fora da tela */
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let autoTimer: ReturnType<typeof setInterval> | null = null;
+    let pausedByUser = false;
+    let sectionVisible = false;
+
+    const stopAuto = () => {
+      if (autoTimer) clearInterval(autoTimer);
+      autoTimer = null;
+    };
+
+    const startAuto = () => {
+      if (autoTimer || prefersReduced || pausedByUser || !sectionVisible) return;
+      autoTimer = setInterval(() => {
+        if (animating) return;
+        animating = true;
+        carousel.scrollBy({ left: step(), behavior: 'smooth' });
+        // o wrap só acontece DEPOIS da animação, de forma invisível —
+        // nunca no meio dela (evita o glitch de "voltar pra esquerda")
+        const finish = () => {
+          if (!animating) return;
+          animating = false;
+          handleLoop();
+        };
+        if ('onscrollend' in window) {
+          carousel.addEventListener('scrollend', finish, { once: true });
+          setTimeout(finish, 1200);
+        } else {
+          setTimeout(finish, 800);
+        }
+      }, interval);
+    };
+
+    carousel.addEventListener('mouseenter', () => { pausedByUser = true; stopAuto(); });
+    carousel.addEventListener('mouseleave', () => { pausedByUser = false; startAuto(); });
+    carousel.addEventListener('focusin', () => { pausedByUser = true; stopAuto(); });
+    carousel.addEventListener('focusout', () => { pausedByUser = false; startAuto(); });
+    carousel.addEventListener('touchstart', () => { pausedByUser = true; stopAuto(); }, { passive: true });
+    carousel.addEventListener('touchend', () => {
+      setTimeout(() => { pausedByUser = false; startAuto(); }, 3500);
+    }, { passive: true });
+    document.addEventListener('visibilitychange', () =>
+      document.hidden ? stopAuto() : startAuto()
+    );
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        sectionVisible = entries[0].isIntersecting;
+        sectionVisible ? startAuto() : stopAuto();
+      },
+      { threshold: 0.25 }
+    );
+    observer.observe(carousel);
+  });
+
+  /* ---- cards de site: screenshot full-page desliza no hover/toque ---- */
+  const canHover = window.matchMedia('(hover: hover)').matches;
+
+  document.querySelectorAll<HTMLElement>('.site-card').forEach((card) => {
+    const shot = card.querySelector<HTMLElement>('.site-shot');
+    const img = card.querySelector<HTMLElement>('img');
+    if (!shot || !img) return;
+
+    const activate = () => {
+      const dist = img.offsetHeight - shot.clientHeight;
+      if (dist <= 0) return;
+      // ~130px/s: lento o suficiente para ver o site inteiro
+      img.style.transitionDuration = `${Math.min(10, Math.max(2.5, dist / 130))}s`;
+      img.style.transform = `translateY(-${dist}px)`;
+    };
+
+    const deactivate = () => {
+      img.style.transitionDuration = '0.9s';
+      img.style.transform = '';
+    };
+
+    if (canHover) {
+      card.addEventListener('mouseenter', activate);
+      card.addEventListener('mouseleave', deactivate);
+    } else {
+      card.addEventListener('click', () => {
+        const open = card.classList.toggle('is-open');
+        open ? activate() : deactivate();
+      });
+    }
+  });
+</script>
+
+<style>
+  .cases {
+    overflow: hidden;
+  }
+
+  .cases-group + .cases-group {
+    margin-top: clamp(3rem, 7vw, 4.5rem);
+  }
+
+  .group-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    font-size: clamp(1.05rem, 2vw, 1.3rem);
+    color: var(--c-muted);
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  .group-title::before,
+  .group-title::after {
+    content: '';
+    height: 1px;
+    width: min(4rem, 12vw);
+    background: linear-gradient(90deg, transparent, rgba(255, 107, 0, 0.5));
+  }
+
+  .group-title::after {
+    background: linear-gradient(90deg, rgba(255, 107, 0, 0.5), transparent);
+  }
+
+  .cases-carousel {
+    display: flex;
+    gap: 1.25rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    /* respiro vertical para o hover (lift + sombra) não ser cortado pelo overflow */
+    padding-block: 1.75rem;
+    margin-block: -1.75rem;
+    padding-inline: max(1.25rem, calc((100vw - var(--container)) / 2));
+    mask-image: linear-gradient(90deg, transparent, black 6%, black 94%, transparent);
+    -webkit-mask-image: linear-gradient(90deg, transparent, black 6%, black 94%, transparent);
+  }
+
+  .cases-carousel::-webkit-scrollbar {
+    display: none;
+  }
+
+  .cases-track {
+    display: flex;
+    gap: 1.25rem;
+    width: max-content;
+    flex-shrink: 0;
+  }
+
+  .case-card {
+    position: relative;
+    width: clamp(21rem, 34vw, 27rem);
+    border-radius: var(--radius);
+    overflow: hidden;
+    scroll-snap-align: start;
+    flex-shrink: 0;
+    isolation: isolate;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+  }
+
+  /* borda em gradiente da marca */
+  .case-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    border-radius: inherit;
+    padding: 1.5px;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 107, 0, 0.55),
+      rgba(255, 72, 14, 0.18) 45%,
+      rgba(255, 255, 255, 0.08) 75%
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+  }
+
+  /* brilho que varre a imagem no hover */
+  .case-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(
+      105deg,
+      transparent 35%,
+      rgba(255, 255, 255, 0.22) 50%,
+      transparent 65%
+    );
+    transform: translateX(-110%);
+    transition: transform 0.7s ease;
+    pointer-events: none;
+  }
+
+  .case-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 24px 48px -16px rgba(255, 72, 14, 0.35);
+  }
+
+  .case-card:hover::before {
+    background: linear-gradient(
+      135deg,
+      rgba(255, 107, 0, 0.95),
+      rgba(255, 27, 24, 0.55) 55%,
+      rgba(255, 107, 0, 0.25)
+    );
+  }
+
+  .case-card:hover::after {
+    transform: translateX(110%);
+  }
+
+  .case-card img {
+    width: 100%;
+    aspect-ratio: 81 / 80;
+    object-fit: cover;
+  }
+
+  .case-name {
+    position: absolute;
+    inset: auto 0 0 0;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 2rem 1.1rem 0.95rem;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.9375rem;
+    background: linear-gradient(180deg, transparent, rgba(13, 13, 13, 0.92));
+  }
+
+  .case-name svg {
+    color: var(--c-orange);
+    flex-shrink: 0;
+  }
+
+  /* ---- cards de sites: moldura de navegador + scroll interno ---- */
+  .site-card {
+    width: clamp(20rem, 32vw, 26rem);
+    background: var(--c-card);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .site-browser {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.7rem 1rem;
+    background: #161616;
+    border-bottom: 1px solid var(--c-border);
+    flex-shrink: 0;
+  }
+
+  .browser-dots {
+    display: flex;
+    gap: 0.35rem;
+  }
+
+  .browser-dots i {
+    width: 0.55rem;
+    height: 0.55rem;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.18);
+  }
+
+  .browser-dots i:first-child {
+    background: rgba(255, 107, 0, 0.75);
+  }
+
+  .browser-title {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.8125rem;
+    color: var(--c-muted);
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .site-shot {
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+  }
+
+  .site-shot img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: auto;
+    object-fit: unset;
+    transition: transform 2.5s ease-in-out;
+    will-change: transform;
+  }
+
+  /* paginação em dots abaixo do carrossel */
+  .cases-dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 2.25rem;
+  }
+
+  .cases-dot {
+    position: relative;
+    width: 1.5rem;
+    height: 1.5rem;
+    padding: 0;
+    border: 0;
+    border-radius: 999px;
+    background: transparent;
+    cursor: pointer;
+    transition: width 0.3s ease;
+  }
+
+  /* dot visual; o botão em si tem área de toque de 24px */
+  .cases-dot::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 0.55rem;
+    height: 0.55rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.22);
+    transition: width 0.3s ease, background 0.3s ease;
+  }
+
+  .cases-dot:hover::before {
+    background: rgba(255, 107, 0, 0.6);
+  }
+
+  .cases-dot[aria-selected='true'] {
+    width: 2rem;
+  }
+
+  .cases-dot[aria-selected='true']::before {
+    width: 1.75rem;
+    background: var(--gradient);
+  }
+
+  @media (max-width: 56rem) {
+    .cases-carousel {
+      mask-image: linear-gradient(90deg, transparent, black 4%, black 96%, transparent);
+      -webkit-mask-image: linear-gradient(90deg, transparent, black 4%, black 96%, transparent);
+    }
+  }
+</style>

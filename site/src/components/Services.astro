@@ -1,0 +1,561 @@
+---
+import { whatsappLink, waMessages } from '../data/site';
+
+const services = [
+  {
+    badge: 'Especialidade da casa',
+    title: 'Tráfego Pago com foco em conversão',
+    description:
+      'Não vendemos cliques — entregamos resultado. Campanhas de anúncios estrategicamente pensadas para atrair, segmentar e converter quem realmente importa para o seu negócio.',
+    bullets: [
+      'Configuração completa de contas, tags e pixels',
+      'Pesquisa e segmentação avançada de público',
+      'Criativos e copys persuasivas para anúncios',
+      'Análise constante da concorrência',
+      'Otimização contínua das campanhas',
+      'Relatórios mensais claros e transparentes',
+    ],
+    cta: 'Quero escalar meu tráfego',
+    link: whatsappLink(waMessages.trafego),
+    visual: 'trafego',
+  },
+  {
+    badge: 'Especialidade da casa',
+    title: 'Criação de Sites que vendem',
+    description:
+      'Sites institucionais, landing pages e lojas virtuais com estrutura clara, copy persuasiva e foco total na experiência do usuário — tudo pensado para posicionar sua marca e gerar resultado.',
+    bullets: [
+      'Design exclusivo, moderno e profissional',
+      'Copywriting persuasivo focado em conversão',
+      'Carregamento rápido e otimização para SEO',
+      'Perfeito em qualquer tela, do celular ao desktop',
+      'Integração com WhatsApp e ferramentas de venda',
+      'Estrutura pronta para campanhas de tráfego',
+    ],
+    cta: 'Quero um site que vende',
+    link: whatsappLink(waMessages.sites),
+    visual: 'sites',
+  },
+];
+---
+
+<section class="section services" id="servicos" aria-labelledby="services-title">
+  <div class="container">
+    <div class="section-head center reveal">
+      <p class="eyebrow">O que fazemos de melhor</p>
+      <h2 class="section-title" id="services-title">
+        Duas frentes, um objetivo: <span class="text-gradient">seu resultado</span>
+      </h2>
+      <p class="section-sub">
+        Não vendemos pacotes prontos. A gente analisa a sua realidade e combina
+        estratégia, criatividade e performance — aqui, cada ação tem um porquê.
+      </p>
+    </div>
+
+    <div class="services-list">
+      {services.map((service, index) => (
+        <article class={`service reveal ${index % 2 === 1 ? 'service-flip' : ''}`}>
+          <div class="service-media" aria-hidden="true">
+            <div class="viz-glow"></div>
+
+            {service.visual === 'trafego' ? (
+              <>
+                {/* painel de tráfego com métricas e gráfico */}
+                <div class="viz-card">
+                  <div class="viz-head">
+                    <span class="viz-pulse"></span>
+                    <span class="viz-title">Painel de Tráfego</span>
+                    <span class="viz-live">ao vivo</span>
+                  </div>
+                  <div class="viz-metrics">
+                    <div><small>Impressões</small><strong>128,4K</strong></div>
+                    <div><small>Cliques</small><strong>4.872</strong></div>
+                    <div><small>Conversões</small><strong class="text-gradient">+142%</strong></div>
+                  </div>
+                  <svg class="viz-chart" viewBox="0 0 320 120" fill="none">
+                    <defs>
+                      <linearGradient id="area-g" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="#ff6b00" stop-opacity="0.4" />
+                        <stop offset="100%" stop-color="#ff1b18" stop-opacity="0" />
+                      </linearGradient>
+                      <linearGradient id="line-g" x1="0" y1="0" x2="1" y2="0">
+                        <stop offset="0%" stop-color="#ff6b00" />
+                        <stop offset="100%" stop-color="#ff1b18" />
+                      </linearGradient>
+                    </defs>
+                    <path d="M0,95 C30,90 45,70 70,72 S115,85 145,60 S205,55 235,38 S295,28 320,12 L320,120 L0,120 Z" fill="url(#area-g)" />
+                    <path class="viz-line" d="M0,95 C30,90 45,70 70,72 S115,85 145,60 S205,55 235,38 S295,28 320,12" stroke="url(#line-g)" stroke-width="3" stroke-linecap="round" />
+                    <circle class="viz-point" cx="305" cy="18" r="5" fill="#ff6b00" />
+                  </svg>
+                  <div class="viz-bars">
+                    <i style="--h: 35%; --d: 0s"></i>
+                    <i style="--h: 55%; --d: 0.1s"></i>
+                    <i style="--h: 40%; --d: 0.2s"></i>
+                    <i style="--h: 70%; --d: 0.3s"></i>
+                    <i style="--h: 58%; --d: 0.4s"></i>
+                    <i style="--h: 85%; --d: 0.5s"></i>
+                    <i style="--h: 100%; --d: 0.6s"></i>
+                  </div>
+                </div>
+
+                <span class="viz-chip viz-chip-1">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+                  ROAS 5,2x
+                </span>
+                <span class="viz-chip viz-chip-2">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m7 15 4-6 4 3 5-8"/></svg>
+                  +142% conversões
+                </span>
+                <span class="viz-chip viz-chip-3">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 9 5 12 1.8-5.2L21 14Z"/><path d="M7.2 2.2 8 5.1M5.1 8l-2.9-.8M12.6 2.9l-.8 2.9M6.4 6.4 3.6 3.6"/></svg>
+                  CTR 3,8%
+                </span>
+              </>
+            ) : (
+              <>
+                {/* site em construção: browser + wireframe + celular */}
+                <div class="viz-card viz-browser">
+                  <div class="viz-head">
+                    <span class="browser-dots"><i></i><i></i><i></i></span>
+                    <span class="viz-url">seunegocio.com.br</span>
+                  </div>
+                  <div class="viz-wire">
+                    <span class="wire-block wire-hero"></span>
+                    <span class="wire-block wire-line" style="--w: 60%"></span>
+                    <span class="wire-block wire-line" style="--w: 82%"></span>
+                    <span class="wire-btn"></span>
+                    <div class="wire-cards"><i></i><i></i><i></i></div>
+                  </div>
+                </div>
+                <div class="viz-phone">
+                  <span class="wire-block wire-line" style="--w: 75%"></span>
+                  <span class="wire-block wire-line" style="--w: 55%"></span>
+                  <span class="wire-btn wire-btn-sm"></span>
+                </div>
+
+                <span class="viz-chip viz-chip-1">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m8 6-6 6 6 6M16 6l6 6-6 6"/></svg>
+                  código limpo
+                </span>
+                <span class="viz-chip viz-chip-2">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+                  SEO 100/100
+                </span>
+                <span class="viz-chip viz-chip-3">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg>
+                  mobile-first
+                </span>
+              </>
+            )}
+          </div>
+
+          <div class="service-content">
+            <span class="badge">{service.badge}</span>
+            <h3>{service.title}</h3>
+            <p>{service.description}</p>
+            <ul>
+              {service.bullets.map((bullet) => (
+                <li>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <circle cx="12" cy="12" r="10" fill="url(#check-grad)" opacity="0.18" />
+                    <path d="m8.5 12.5 2.5 2.5 4.5-5" stroke="url(#check-grad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                  {bullet}
+                </li>
+              ))}
+            </ul>
+            <a class="btn btn-primary" href={service.link} target="_blank" rel="noopener noreferrer">
+              {service.cta}
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M5 12h14M13 6l6 6-6 6" />
+              </svg>
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <linearGradient id="check-grad" x1="0" y1="0" x2="24" y2="24">
+        <stop offset="0%" stop-color="#ff6b00" />
+        <stop offset="100%" stop-color="#ff1b18" />
+      </linearGradient>
+    </defs>
+  </svg>
+</section>
+
+<style>
+  .services-list {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(3rem, 7vw, 5rem);
+  }
+
+  .service {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(2rem, 5vw, 4.5rem);
+    align-items: center;
+  }
+
+  .service-flip .service-media {
+    order: 2;
+  }
+
+  /* ===== composição visual criativa ===== */
+  .service-media {
+    position: relative;
+    display: grid;
+    place-items: center;
+    min-height: 24rem;
+    padding: 2.5rem 1.5rem;
+  }
+
+  .viz-glow {
+    position: absolute;
+    inset: 8% 12%;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 107, 0, 0.22), rgba(255, 27, 24, 0.08) 55%, transparent 75%);
+    filter: blur(50px);
+    animation: glow-pulse 7s ease-in-out infinite;
+  }
+
+  @keyframes glow-pulse {
+    0%, 100% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.12); opacity: 1; }
+  }
+
+  .viz-card {
+    position: relative;
+    width: min(100%, 24rem);
+    padding: 1.4rem;
+    background: rgba(26, 26, 26, 0.82);
+    border: 1px solid var(--c-border);
+    border-radius: 1.25rem;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 32px 64px -24px rgba(0, 0, 0, 0.75);
+    transition: transform 0.45s ease, border-color 0.45s ease, box-shadow 0.45s ease;
+  }
+
+  .service-media:hover .viz-card {
+    transform: translateY(-6px);
+    border-color: rgba(255, 107, 0, 0.45);
+    box-shadow: 0 40px 80px -24px rgba(255, 72, 14, 0.28);
+  }
+
+  .viz-head {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 1.1rem;
+  }
+
+  .viz-pulse {
+    width: 0.6rem;
+    height: 0.6rem;
+    border-radius: 50%;
+    background: var(--c-orange);
+    animation: dot-pulse 2s ease-out infinite;
+  }
+
+  @keyframes dot-pulse {
+    0% { box-shadow: 0 0 0 0 rgba(255, 107, 0, 0.6); }
+    70%, 100% { box-shadow: 0 0 0 8px rgba(255, 107, 0, 0); }
+  }
+
+  .viz-title {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.875rem;
+  }
+
+  .viz-live {
+    margin-left: auto;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #4ade80;
+  }
+
+  .viz-metrics {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.6rem;
+    margin-bottom: 1.1rem;
+  }
+
+  .viz-metrics > div {
+    padding: 0.6rem 0.7rem;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--c-border);
+    border-radius: 0.7rem;
+  }
+
+  .viz-metrics small {
+    display: block;
+    font-size: 0.625rem;
+    color: var(--c-muted);
+    margin-bottom: 0.15rem;
+  }
+
+  .viz-metrics strong {
+    font-family: var(--font-display);
+    font-size: 0.9375rem;
+  }
+
+  .viz-chart {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  .viz-line {
+    stroke-dasharray: 600;
+    stroke-dashoffset: 600;
+    animation: draw-line 2.2s ease forwards 0.3s;
+  }
+
+  @keyframes draw-line {
+    to { stroke-dashoffset: 0; }
+  }
+
+  .viz-point {
+    animation: dot-pulse 2s ease-out infinite 1s;
+  }
+
+  .viz-bars {
+    display: flex;
+    align-items: flex-end;
+    gap: 0.5rem;
+    height: 3.25rem;
+  }
+
+  .viz-bars i {
+    flex: 1;
+    height: var(--h);
+    border-radius: 0.3rem 0.3rem 0.15rem 0.15rem;
+    background: var(--gradient);
+    opacity: 0.85;
+    transform-origin: bottom;
+    animation: bar-grow 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) backwards;
+    animation-delay: var(--d);
+  }
+
+  @keyframes bar-grow {
+    from { transform: scaleY(0); }
+    to { transform: scaleY(1); }
+  }
+
+  /* ===== browser / wireframe (criação de sites) ===== */
+  .browser-dots {
+    display: flex;
+    gap: 0.35rem;
+  }
+
+  .browser-dots i {
+    width: 0.55rem;
+    height: 0.55rem;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.18);
+  }
+
+  .browser-dots i:first-child {
+    background: rgba(255, 107, 0, 0.75);
+  }
+
+  .viz-url {
+    flex: 1;
+    padding: 0.3rem 0.75rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 999px;
+    font-size: 0.6875rem;
+    color: var(--c-muted);
+    text-align: center;
+  }
+
+  .viz-wire {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .wire-block {
+    display: block;
+    border-radius: 0.4rem;
+    background: linear-gradient(100deg, rgba(255,255,255,0.07) 40%, rgba(255,255,255,0.16) 50%, rgba(255,255,255,0.07) 60%);
+    background-size: 250% 100%;
+    animation: shimmer 3s linear infinite;
+  }
+
+  @keyframes shimmer {
+    to { background-position: -250% 0; }
+  }
+
+  .wire-hero {
+    height: 4.5rem;
+    border-radius: 0.7rem;
+    background: linear-gradient(120deg, rgba(255, 107, 0, 0.35), rgba(255, 27, 24, 0.18) 60%, rgba(255,255,255,0.05));
+  }
+
+  .wire-line {
+    height: 0.7rem;
+    width: var(--w);
+  }
+
+  .wire-btn {
+    height: 1.6rem;
+    width: 7.5rem;
+    border-radius: 999px;
+    background: var(--gradient);
+    box-shadow: 0 6px 18px -6px rgba(255, 72, 14, 0.6);
+  }
+
+  .wire-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.6rem;
+    margin-top: 0.4rem;
+  }
+
+  .wire-cards i {
+    height: 2.75rem;
+    border-radius: 0.5rem;
+    background: linear-gradient(100deg, rgba(255,255,255,0.06) 40%, rgba(255,255,255,0.13) 50%, rgba(255,255,255,0.06) 60%);
+    background-size: 250% 100%;
+    animation: shimmer 3s linear infinite;
+  }
+
+  .viz-phone {
+    position: absolute;
+    right: 0.5rem;
+    bottom: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    width: 5.5rem;
+    padding: 0.8rem 0.7rem;
+    background: rgba(22, 22, 22, 0.95);
+    border: 1px solid rgba(255, 107, 0, 0.35);
+    border-radius: 0.9rem;
+    box-shadow: 0 20px 40px -16px rgba(0, 0, 0, 0.7);
+    animation: float 6s ease-in-out infinite 1.2s;
+  }
+
+  .wire-btn-sm {
+    height: 1.1rem;
+    width: 3.5rem;
+  }
+
+  /* ===== chips flutuantes ao redor ===== */
+  .viz-chip {
+    position: absolute;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.55rem 0.95rem;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.8125rem;
+    color: var(--c-text);
+    background: rgba(26, 26, 26, 0.85);
+    border: 1px solid rgba(255, 107, 0, 0.3);
+    border-radius: 999px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 12px 28px -10px rgba(0, 0, 0, 0.6);
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .viz-chip svg {
+    color: var(--c-orange);
+    flex-shrink: 0;
+  }
+
+  .viz-chip-1 {
+    top: 8%;
+    left: 2%;
+  }
+
+  .viz-chip-2 {
+    top: 4%;
+    right: 3%;
+    animation-delay: 1.5s;
+  }
+
+  .viz-chip-3 {
+    bottom: 7%;
+    left: 6%;
+    animation-delay: 3s;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  .badge {
+    display: inline-block;
+    padding: 0.35rem 0.9rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--c-orange);
+    background: rgba(255, 107, 0, 0.1);
+    border: 1px solid rgba(255, 107, 0, 0.3);
+    margin-bottom: 1.1rem;
+  }
+
+  .service-content h3 {
+    font-size: clamp(1.6rem, 3.2vw, 2.25rem);
+    margin-bottom: 1rem;
+  }
+
+  .service-content > p {
+    color: var(--c-muted);
+    margin-bottom: 1.5rem;
+  }
+
+  .service-content ul {
+    display: grid;
+    gap: 0.7rem;
+    margin-bottom: 2rem;
+  }
+
+  .service-content li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.65rem;
+    font-size: 0.975rem;
+    color: var(--c-text);
+  }
+
+  .service-content li svg {
+    flex-shrink: 0;
+    margin-top: 0.15rem;
+  }
+
+  @media (max-width: 56rem) {
+    .service {
+      grid-template-columns: 1fr;
+    }
+
+    .service-flip .service-media {
+      order: 0;
+    }
+
+    .service-media {
+      min-height: 21rem;
+      padding-inline: 0.5rem;
+    }
+
+    .viz-chip-1 { left: 0; }
+    .viz-chip-2 { right: 0; }
+    .viz-chip-3 { left: 2%; }
+  }
+</style>

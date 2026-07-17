@@ -1,0 +1,163 @@
+---
+import { whatsappLink, waMessages } from '../data/site';
+
+const faqs = [
+  {
+    question: 'Já investi em tráfego pago e só atraí curiosos. Por que com vocês seria diferente?',
+    answer:
+      'Porque a gente não coloca campanha no ar esperando mágica. Começamos pela estratégia: quem é seu público real, o que ele valoriza e qual caminho ele percorre antes de comprar. Só depois disso vem o tráfego.',
+  },
+  {
+    question: 'Preciso de uma grande verba para começar com tráfego pago?',
+    answer:
+      'Não necessariamente. Podemos começar com um orçamento menor para testar as águas e aumentar o investimento conforme você vê o retorno. Para campanhas iniciais, recomendamos um investimento mínimo de R$ 30/dia.',
+  },
+  {
+    question: 'Quanto tempo demora para ver resultados com tráfego pago?',
+    answer:
+      'Os primeiros resultados podem aparecer quase imediatamente, mas alcançar o máximo potencial exige ajustes e otimizações. Você verá aumento no tráfego logo após o lançamento, e a otimização contínua leva algumas semanas, dependendo da campanha e do comportamento do público.',
+  },
+  {
+    question: 'Como saber se o problema da minha empresa é marketing mesmo — ou outra coisa?',
+    answer:
+      'Essa é a primeira pergunta que respondemos no diagnóstico. Muitos acham que precisam de seguidores, mas na verdade têm um problema comercial, de posicionamento ou de funil. A gente descobre isso junto com você.',
+  },
+  {
+    question: 'Minha empresa já tem agência. Vale a pena mudar?',
+    answer:
+      'Se você sente que está estagnado, que tem entrega sem resultado e que suas ideias não são ouvidas, vale sim. O que fazemos aqui é diferente: somos parceiros de crescimento, não fornecedores de postagens.',
+  },
+  {
+    question: 'E se eu não souber explicar direito o que minha empresa precisa?',
+    answer:
+      'Sem problema. Nosso trabalho começa justamente ouvindo você e traduzindo suas dores em um plano prático de ação. Não precisa saber os termos certos — precisa saber que quer crescer. O resto é com a gente.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((faq) => ({
+    '@type': 'Question',
+    name: faq.question,
+    acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+  })),
+};
+---
+
+<section class="section faq" id="faq" aria-labelledby="faq-title">
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+  <div class="container faq-grid">
+    <div class="faq-intro reveal">
+      <p class="eyebrow">Dúvidas frequentes</p>
+      <h2 class="section-title" id="faq-title">
+        Esclareça suas dúvidas com <span class="text-gradient">quem entende de verdade</span>
+      </h2>
+      <p class="section-sub">
+        Nem toda empresa precisa da mesma estratégia — e é normal ter dúvidas
+        na hora de investir em marketing digital.
+      </p>
+      <a class="btn btn-ghost" href={whatsappLink(waMessages.default)} target="_blank" rel="noopener noreferrer">
+        Falar com um especialista
+      </a>
+    </div>
+
+    <div class="faq-list">
+      {faqs.map((faq) => (
+        <details class="faq-item reveal">
+          <summary>
+            <span>{faq.question}</span>
+            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="m6 9 6 6 6-6" />
+            </svg>
+          </summary>
+          <p>{faq.answer}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: clamp(2.5rem, 6vw, 5rem);
+    align-items: start;
+  }
+
+  .faq-intro {
+    position: sticky;
+    top: 7rem;
+  }
+
+  .faq-intro .btn {
+    margin-top: 1.75rem;
+  }
+
+  .faq-list {
+    display: grid;
+    gap: 0.9rem;
+  }
+
+  .faq-item {
+    background: var(--c-card);
+    border: 1px solid var(--c-border);
+    border-radius: 1rem;
+    overflow: hidden;
+    transition: border-color 0.3s ease;
+  }
+
+  .faq-item[open] {
+    border-color: rgba(255, 107, 0, 0.45);
+  }
+
+  .faq-item summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.0125rem;
+    cursor: pointer;
+    list-style: none;
+    transition: color 0.2s ease;
+  }
+
+  .faq-item summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-item summary:hover {
+    color: var(--c-orange);
+  }
+
+  .faq-chevron {
+    flex-shrink: 0;
+    color: var(--c-orange);
+    transition: transform 0.3s ease;
+  }
+
+  .faq-item[open] .faq-chevron {
+    transform: rotate(180deg);
+  }
+
+  .faq-item > p {
+    padding: 0 1.5rem 1.4rem;
+    color: var(--c-muted);
+    font-size: 0.9625rem;
+  }
+
+  @media (max-width: 56rem) {
+    .faq-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .faq-intro {
+      position: static;
+    }
+  }
+</style>
