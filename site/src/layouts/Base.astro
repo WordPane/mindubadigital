@@ -150,20 +150,28 @@ const webPage = {
     <script type="application/ld+json" set:html={JSON.stringify(webPage)} />
     <slot name="head" />
 
-    {/* Google Tag Manager — dataLayer ativo já; gtm.js injetado só após o load,
-        fora do caminho crítico de renderização (GTM-TZSQXLN) */}
+    {/* Google Tag Manager — dataLayer ativo já; gtm.js só é injetado na
+        primeira interação do usuário (ou 5s após o load), mantendo o
+        JavaScript pesado de terceiros fora do carregamento inicial (GTM-TZSQXLN) */}
     <script is:inline>
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
-      (function loadGTM() {
-        var inject = function () {
+      (function () {
+        var loaded = false;
+        function inject() {
+          if (loaded) return;
+          loaded = true;
           var s = document.createElement('script');
           s.async = true;
           s.src = 'https://www.googletagmanager.com/gtm.js?id=GTM-TZSQXLN';
           document.head.appendChild(s);
-        };
-        if (document.readyState === 'complete') inject();
-        else window.addEventListener('load', inject, { once: true });
+        }
+        ['pointerdown', 'touchstart', 'scroll', 'keydown'].forEach(function (evt) {
+          window.addEventListener(evt, inject, { once: true, passive: true });
+        });
+        function armTimeout() { setTimeout(inject, 5000); }
+        if (document.readyState === 'complete') armTimeout();
+        else window.addEventListener('load', armTimeout, { once: true });
       })();
     </script>
   </head>

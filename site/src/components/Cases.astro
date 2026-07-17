@@ -107,7 +107,7 @@ const siteCases = Object.entries(siteImages)
                 alt=""
                 widths={[640, 832, 1152]}
                 sizes="(max-width: 40rem) 86vw, 26rem"
-                loading="eager"
+                loading="lazy" data-clone-lazy
                 decoding="async"
               />
             </div>
@@ -163,7 +163,7 @@ const siteCases = Object.entries(siteImages)
               alt=""
               widths={[480, 640, 768]}
               sizes="(max-width: 40rem) 86vw, 27rem"
-              loading="eager"
+              loading="lazy" data-clone-lazy
               decoding="async"
             />
             <span class="case-name">
@@ -192,6 +192,32 @@ const siteCases = Object.entries(siteImages)
 </section>
 
 <script>
+  /* promove as imagens da trilha duplicada (lazy por padrão, para não pesar
+     no carregamento inicial) quando a seção se aproxima da tela */
+  const cloneImgs = document.querySelectorAll<HTMLImageElement>('[data-clone-lazy]');
+  if (cloneImgs.length) {
+    const casesSection = document.querySelector('.cases');
+    const promote = () =>
+      cloneImgs.forEach((img) => {
+        img.loading = 'eager';
+        img.removeAttribute('data-clone-lazy');
+      });
+    if (casesSection && 'IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(
+        (entries, obs) => {
+          if (entries[0].isIntersecting) {
+            promote();
+            obs.disconnect();
+          }
+        },
+        { rootMargin: '600px' }
+      );
+      observer.observe(casesSection);
+    } else {
+      promote();
+    }
+  }
+
   /* ---- carrosséis: loop infinito, dots e autoplay (uma instância por trilho) ---- */
   document.querySelectorAll<HTMLElement>('.cases-carousel').forEach((carousel) => {
     const group = carousel.closest('.cases-group');
