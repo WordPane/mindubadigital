@@ -1,0 +1,107 @@
+---
+const impactos = [
+  {
+    numero: '53%',
+    texto:
+      'dos visitantes abandonam um site que demora mais de 3 segundos para carregar no celular.',
+    fonte: 'Fonte: Google',
+  },
+  {
+    numero: '6×',
+    texto:
+      'mais rápido: o conteúdo principal do site novo aparece em 1,6s — contra 9,6s do site antigo.',
+    fonte: 'Medição Lighthouse',
+  },
+  {
+    numero: '15×',
+    texto:
+      'mais leve: a página inicial saiu de 2,9 MB para 188 KB. Menos dados, menos espera.',
+    fonte: 'Medição Lighthouse',
+  },
+];
+---
+
+<section class="section">
+  <div class="container">
+    <div class="section-head center">
+      <p class="eyebrow">Por que isso importa</p>
+      <h2 class="section-title">Velocidade não é detalhe técnico.<br />É <span class="text-gradient">dinheiro na mesa</span></h2>
+      <p class="section-sub">
+        Cada segundo de espera custa visitantes, contatos e vendas. E no mobile —
+        de onde vem a maioria do seu tráfego — a paciência é ainda menor.
+      </p>
+    </div>
+
+    <div class="impactos">
+      {
+        impactos.map((i) => (
+          <article class="impacto">
+            <strong class="impacto-numero">{i.numero}</strong>
+            <p>{i.texto}</p>
+            <small>{i.fonte}</small>
+          </article>
+        ))
+      }
+    </div>
+
+    <p class="impacto-note">
+      Velocidade também é ranqueamento: o Google considera a experiência da página tanto
+      na busca orgânica quanto na pontuação de qualidade dos anúncios. Site rápido
+      aparece mais — e desperdiça menos verba.
+    </p>
+  </div>
+</section>
+
+<style>
+  .impactos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(1rem, 3vw, 2rem);
+  }
+
+  .impacto {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: clamp(1.5rem, 4vw, 2.25rem);
+    background: var(--c-card);
+    border: 1px solid var(--c-border);
+    border-radius: var(--radius);
+  }
+
+  .impacto-numero {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 6vw, 3.5rem);
+    font-weight: 700;
+    line-height: 1;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .impacto p {
+    color: var(--c-text);
+    font-size: 1rem;
+    flex-grow: 1;
+  }
+
+  .impacto small {
+    font-size: 0.8125rem;
+    color: var(--c-muted);
+  }
+
+  .impacto-note {
+    max-width: 46rem;
+    margin: clamp(2rem, 5vw, 3rem) auto 0;
+    text-align: center;
+    color: var(--c-muted);
+    font-size: 1rem;
+  }
+
+  @media (max-width: 48rem) {
+    .impactos {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

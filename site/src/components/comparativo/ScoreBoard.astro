@@ -1,0 +1,272 @@
+---
+import { comparativo } from '../../data/comparativo';
+
+const { antigo, novo, testDate, psiLinks } = comparativo;
+
+const metricas = [
+  {
+    rotulo: 'Maior conteúdo da página (LCP)',
+    detalhe: 'quando o conteúdo principal aparece',
+    antes: antigo.lcp,
+    depois: novo.lcp,
+  },
+  {
+    rotulo: 'Primeiro conteúdo (FCP)',
+    detalhe: 'primeira resposta visual na tela',
+    antes: antigo.fcp,
+    depois: novo.fcp,
+  },
+  {
+    rotulo: 'Bloqueio de interação (TBT)',
+    detalhe: 'travas ao tocar e interagir',
+    antes: antigo.tbt,
+    depois: novo.tbt,
+  },
+  {
+    rotulo: 'Estabilidade visual (CLS)',
+    detalhe: 'elementos que “pulam” durante o carregamento',
+    antes: antigo.cls,
+    depois: novo.cls,
+  },
+  {
+    rotulo: 'Índice de velocidade (SI)',
+    detalhe: 'rapidez geral de exibição',
+    antes: antigo.si,
+    depois: novo.si,
+  },
+  {
+    rotulo: 'Peso total da página',
+    detalhe: 'dados baixados no primeiro acesso',
+    antes: antigo.peso,
+    depois: novo.peso,
+  },
+];
+---
+
+<section class="section scoreboard">
+  <div class="container">
+    <div class="section-head center">
+      <p class="eyebrow">Os números</p>
+      <h2 class="section-title">Performance medida pelo <span class="text-gradient">Google</span></h2>
+      <p class="section-sub">
+        Teste de velocidade mobile com o Lighthouse — a mesma tecnologia que o Google
+        usa para avaliar a experiência de páginas na busca.
+      </p>
+    </div>
+
+    <div class="scores">
+      <article class="score-card">
+        <div class="gauge" style={`--score: ${antigo.score}; --gauge-color: #ff5252;`}>
+          <span class="gauge-value">{antigo.score}</span>
+        </div>
+        <h3>Antes · {antigo.tecnologia}</h3>
+        <p class="score-url">{antigo.url}</p>
+        <a class="score-link" href={psiLinks.antigo} target="_blank" rel="noopener noreferrer">
+          Ver relatório ↗
+        </a>
+      </article>
+
+      <article class="score-card score-new">
+        <div class="gauge" style={`--score: ${novo.score}; --gauge-color: #2ecc71;`}>
+          <span class="gauge-value">{novo.score}</span>
+        </div>
+        <h3>Depois · {novo.tecnologia}</h3>
+        <p class="score-url">{novo.url}</p>
+        <a class="score-link" href={psiLinks.novo} target="_blank" rel="noopener noreferrer">
+          Ver relatório ↗
+        </a>
+      </article>
+    </div>
+
+    <div class="metricas">
+      <div class="metricas-head" aria-hidden="true">
+        <span>Métrica</span>
+        <span>Antes</span>
+        <span>Depois</span>
+      </div>
+      {
+        metricas.map((m) => (
+          <div class="metrica">
+            <div class="metrica-info">
+              <strong>{m.rotulo}</strong>
+              <small>{m.detalhe}</small>
+            </div>
+            <span class="metrica-antes">{m.antes}</span>
+            <span class="metrica-depois">{m.depois}</span>
+          </div>
+        ))
+      }
+    </div>
+
+    <p class="score-note">
+      Medição mobile realizada em {testDate}. Os links acima abrem os relatórios públicos
+      do Google PageSpeed — confira você mesmo.
+    </p>
+  </div>
+</section>
+
+<style>
+  .scoreboard {
+    background: var(--c-bg-soft);
+    border-block: 1px solid var(--c-border);
+  }
+
+  .scores {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(1rem, 3vw, 2rem);
+    max-width: 46rem;
+    margin: 0 auto clamp(2.5rem, 6vw, 4rem);
+  }
+
+  .score-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: clamp(1.5rem, 4vw, 2.5rem);
+    background: var(--c-card);
+    border: 1px solid var(--c-border);
+    border-radius: var(--radius);
+    text-align: center;
+  }
+
+  .score-new {
+    border-color: rgba(255, 107, 0, 0.35);
+  }
+
+  .gauge {
+    --p: calc(var(--score) * 1%);
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: clamp(6rem, 16vw, 7.5rem);
+    aspect-ratio: 1;
+    margin-bottom: 0.75rem;
+    border-radius: 50%;
+    background: conic-gradient(var(--gauge-color) var(--p), rgba(255, 255, 255, 0.08) 0);
+  }
+
+  .gauge::before {
+    content: '';
+    position: absolute;
+    inset: 0.55rem;
+    border-radius: 50%;
+    background: var(--c-card);
+  }
+
+  .gauge-value {
+    position: relative;
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 700;
+  }
+
+  .score-card h3 {
+    font-size: 1.05rem;
+  }
+
+  .score-url {
+    font-size: 0.8125rem;
+    color: var(--c-muted);
+    word-break: break-all;
+  }
+
+  .score-link {
+    margin-top: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--c-orange);
+  }
+
+  .score-link:hover {
+    text-decoration: underline;
+  }
+
+  .metricas {
+    max-width: 56rem;
+    margin-inline: auto;
+    background: var(--c-card);
+    border: 1px solid var(--c-border);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+
+  .metricas-head,
+  .metrica {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.95rem 1.25rem;
+  }
+
+  .metricas-head {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--c-muted);
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  .metrica {
+    border-top: 1px solid var(--c-border);
+  }
+
+  .metricas-head span:nth-child(2),
+  .metricas-head span:nth-child(3),
+  .metrica-antes,
+  .metrica-depois {
+    width: 6.5rem;
+    text-align: right;
+  }
+
+  .metrica-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+  }
+
+  .metrica-info strong {
+    font-size: 0.9375rem;
+    font-weight: 600;
+  }
+
+  .metrica-info small {
+    font-size: 0.8125rem;
+    color: var(--c-muted);
+  }
+
+  .metrica-antes {
+    color: var(--c-muted);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .metrica-depois {
+    font-weight: 700;
+    font-family: var(--font-display);
+    color: var(--c-orange);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .score-note {
+    margin-top: 1.5rem;
+    text-align: center;
+    font-size: 0.875rem;
+    color: var(--c-muted);
+  }
+
+  @media (max-width: 40rem) {
+    .metrica-info small {
+      display: none;
+    }
+
+    .metricas-head span:nth-child(2),
+    .metricas-head span:nth-child(3),
+    .metrica-antes,
+    .metrica-depois {
+      width: 4.5rem;
+    }
+  }
+</style>

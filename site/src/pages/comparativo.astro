@@ -1,0 +1,104 @@
+---
+import Base from '../layouts/Base.astro';
+import HeroComparativo from '../components/comparativo/HeroComparativo.astro';
+import ScoreBoard from '../components/comparativo/ScoreBoard.astro';
+import ImpactoNegocio from '../components/comparativo/ImpactoNegocio.astro';
+import TabelaComparativa from '../components/comparativo/TabelaComparativa.astro';
+import CtaComparativo from '../components/comparativo/CtaComparativo.astro';
+import Footer from '../components/Footer.astro';
+import WhatsAppFloat from '../components/WhatsAppFloat.astro';
+import { whatsappLink, waMessages } from '../data/site';
+---
+
+<Base
+  title="Comparativo real: site antigo vs solução Minduba | Minduba Digital"
+  description="Refizemos o nosso próprio site com a solução que entregamos aos clientes: performance medida pelo Google, de 56 para 98 pontos. Veja os números e o que muda na prática."
+  robots="noindex, nofollow"
+>
+  <header class="cmp-header">
+    <div class="container cmp-header-inner">
+      <a href="/" class="cmp-brand">
+        <img src="/logo-mark.png" alt="" width="40" height="40" class="cmp-brand-mark" />
+        <span class="cmp-brand-text">
+          <strong>MINDUBA</strong>
+          <small><em>AGÊNCIA</em> DIGITAL</small>
+        </span>
+      </a>
+      <a
+        class="btn btn-primary cmp-cta"
+        href={whatsappLink(waMessages.comparativo)}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Falar no WhatsApp
+      </a>
+    </div>
+  </header>
+
+  <main id="topo">
+    <HeroComparativo />
+    <ScoreBoard />
+    <ImpactoNegocio />
+    <TabelaComparativa />
+    <CtaComparativo />
+  </main>
+
+  <Footer showNav={false} />
+  <WhatsAppFloat />
+</Base>
+
+<style>
+  .cmp-header {
+    border-bottom: 1px solid var(--c-border);
+    background: rgba(13, 13, 13, 0.82);
+  }
+
+  .cmp-header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    height: 4.75rem;
+  }
+
+  .cmp-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    flex-shrink: 0;
+  }
+
+  .cmp-brand-mark {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  .cmp-brand-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.05;
+    font-family: var(--font-display);
+  }
+
+  .cmp-brand-text strong {
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+  }
+
+  .cmp-brand-text small {
+    font-size: 0.6rem;
+    letter-spacing: 0.22em;
+    color: var(--c-muted);
+  }
+
+  .cmp-brand-text small em {
+    font-style: normal;
+    color: var(--c-orange);
+  }
+
+  .cmp-cta {
+    padding: 0.65rem 1.3rem;
+    font-size: 0.9rem;
+  }
+</style>

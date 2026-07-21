@@ -26,4 +26,6 @@ export const waMessages = {
   estrategia:
     'Olá! Quero um diagnóstico estratégico para o meu negócio.',
   orcamento: 'Olá! Quero um orçamento grátis para o meu negócio.',
+  comparativo:
+    'Olá! Vi o comparativo de performance e quero um site rápido que vende. Podemos conversar?',
 };

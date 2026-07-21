@@ -1,0 +1,168 @@
+---
+const linhas = [
+  {
+    item: 'Tecnologia',
+    antes: 'WordPress com dezenas de plugins',
+    depois: 'Código 100% sob medida',
+  },
+  {
+    item: 'Peso da página inicial',
+    antes: '2,9 MB',
+    depois: '188 KB',
+  },
+  {
+    item: 'Carregamento no mobile',
+    antes: '9,6 segundos',
+    depois: '1,6 segundo',
+  },
+  {
+    item: 'Manutenção',
+    antes: 'Atualizações de plugins e tema — com risco de quebrar',
+    depois: 'Praticamente zero — sem painel nem plugins',
+  },
+  {
+    item: 'Segurança',
+    antes: 'Alvo comum de ataques via plugins desatualizados',
+    depois: 'Sem banco de dados nem tela de login exposta',
+  },
+  {
+    item: 'Hospedagem',
+    antes: 'Servidor com PHP e banco de dados',
+    depois: 'Hospedagem estática simples, com CDN global',
+  },
+  {
+    item: 'SEO técnico',
+    antes: 'Depende de plugins e configurações extras',
+    depois: 'Estrutura otimizada desde o código',
+  },
+  {
+    item: 'Objetivo',
+    antes: 'Tema genérico adaptado',
+    depois: 'Estratégia e conteúdo focados em conversão',
+  },
+];
+---
+
+<section class="section comparativo-table">
+  <div class="container">
+    <div class="section-head center">
+      <p class="eyebrow">Lado a lado</p>
+      <h2 class="section-title">O que muda na prática <span class="text-gradient">para o cliente</span></h2>
+      <p class="section-sub">
+        Não é só velocidade. A forma como o site é construído muda o custo,
+        a segurança e o resultado do seu digital todos os dias.
+      </p>
+    </div>
+
+    <div class="tabela">
+      <div class="linha linha-head" aria-hidden="true">
+        <span></span>
+        <span>Site antigo · WordPress</span>
+        <span>Solução Minduba</span>
+      </div>
+      {
+        linhas.map((l) => (
+          <div class="linha">
+            <strong class="linha-item">{l.item}</strong>
+            <span class="linha-antes">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12" /></svg>
+              {l.antes}
+            </span>
+            <span class="linha-depois">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg>
+              {l.depois}
+            </span>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .comparativo-table {
+    background: var(--c-bg-soft);
+    border-block: 1px solid var(--c-border);
+  }
+
+  .tabela {
+    max-width: 62rem;
+    margin-inline: auto;
+    background: var(--c-card);
+    border: 1px solid var(--c-border);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+
+  .linha {
+    display: grid;
+    grid-template-columns: 0.7fr 1fr 1fr;
+    gap: 1.25rem;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    border-top: 1px solid var(--c-border);
+  }
+
+  .linha:first-child {
+    border-top: 0;
+  }
+
+  .linha-head {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--c-muted);
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  .linha-item {
+    font-size: 0.9375rem;
+  }
+
+  .linha-antes,
+  .linha-depois {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.55rem;
+    font-size: 0.9375rem;
+  }
+
+  .linha-antes {
+    color: var(--c-muted);
+  }
+
+  .linha-antes svg {
+    flex-shrink: 0;
+    margin-top: 0.25rem;
+    color: #ff5252;
+  }
+
+  .linha-depois {
+    color: var(--c-text);
+    font-weight: 500;
+  }
+
+  .linha-depois svg {
+    flex-shrink: 0;
+    margin-top: 0.25rem;
+    color: #2ecc71;
+  }
+
+  @media (max-width: 48rem) {
+    .linha {
+      grid-template-columns: 1fr;
+      gap: 0.6rem;
+      padding: 1.1rem 1.25rem;
+    }
+
+    .linha-head {
+      display: none;
+    }
+
+    .linha-antes::after,
+    .linha-depois::after {
+      content: '';
+    }
+  }
+</style>

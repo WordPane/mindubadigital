@@ -44,6 +44,10 @@ const siteNames: Record<string, string> = {
   'Site-Mori-scaled': 'Mori Comex',
   'Site-Sangiorgio-scaled': 'Sangiorgio',
   'WSRocha-scaled': 'WS Rocha',
+  'Site-3DKG-scaled': '3D Kingdom',
+  'Site-Amuy-Menezes-scaled': 'Amuy Menezes Advocacia',
+  'Site-Facmais-Inhumas-scaled': 'Facmais Inhumas',
+  'Site-Inovare-Multi-scaled': 'Inovare Multi',
 };
 
 const siteCases = Object.entries(siteImages)
@@ -243,16 +247,26 @@ const siteCases = Object.entries(siteImages)
       requestAnimationFrame(() => { jumping = false; });
     };
 
+    /* geometria real do trilho: com o padding lateral do carrossel, o card N
+       alinha em paddingLeft + N * (largura do card + gap) — dots, cliques e
+       posição inicial precisam usar essa mesma base, senão deslocam em telas
+       largas (onde o padding passa da metade do passo) */
+    const startPad = () =>
+      parseFloat(getComputedStyle(carousel).paddingLeft) || 0;
+
     const step = () => {
       const card = carousel.querySelector<HTMLElement>('.case-card');
-      return card ? card.offsetWidth + 20 : 320;
+      if (!card) return 320;
+      const gap = parseFloat(getComputedStyle(carousel).columnGap) || 20;
+      return card.offsetWidth + gap;
     };
 
     const updateDots = () => {
       if (!total) return;
-      const active = ((Math.round(carousel.scrollLeft / step()) % total) + total) % total;
-      dots.forEach((dot, index) =>
-        dot.setAttribute('aria-selected', String(index === active))
+      const index = Math.round((carousel.scrollLeft - startPad()) / step());
+      const active = ((index % total) + total) % total;
+      dots.forEach((dot, i) =>
+        dot.setAttribute('aria-selected', String(i === active))
       );
     };
 
@@ -267,7 +281,7 @@ const siteCases = Object.entries(siteImages)
     dots.forEach((dot) =>
       dot.addEventListener('click', () => {
         const index = Number(dot.dataset.index ?? 0);
-        carousel.scrollTo({ left: index * step(), behavior: 'smooth' });
+        carousel.scrollTo({ left: startPad() + index * step(), behavior: 'smooth' });
       })
     );
 
@@ -281,7 +295,7 @@ const siteCases = Object.entries(siteImages)
     );
 
     // começa no segundo conjunto para haver espaço de rolagem nas duas direções
-    carousel.scrollLeft = loopWidth();
+    carousel.scrollLeft = startPad() + total * step();
     updateDots();
 
     /* rolagem automática suave, com pausas em interação, aba inativa
