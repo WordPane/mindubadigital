@@ -13,8 +13,17 @@ import { whatsappLink, waMessages } from '../data/site';
 <Base
   title="Comparativo real: site antigo vs solução Minduba | Minduba Digital"
   description="Refizemos o nosso próprio site com a solução que entregamos aos clientes: performance medida pelo Google, de 56 para 98 pontos. Veja os números e o que muda na prática."
-  robots="noindex, nofollow"
 >
+  <link
+    slot="head"
+    rel="preload"
+    as="image"
+    type="image/avif"
+    href="/comparativo/site-antigo-1100.avif"
+    imagesrcset="/comparativo/site-antigo-750.avif 750w, /comparativo/site-antigo-1100.avif 1100w"
+    imagesizes="(max-width: 48rem) 94vw, 545px"
+    fetchpriority="high"
+  />
   <header class="cmp-header">
     <div class="container cmp-header-inner">
       <a href="/" class="cmp-brand">
@@ -100,5 +109,13 @@ import { whatsappLink, waMessages } from '../data/site';
   .cmp-cta {
     padding: 0.65rem 1.3rem;
     font-size: 0.9rem;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 48rem) {
+    .cmp-cta {
+      padding: 0.55rem 1rem;
+      font-size: 0.85rem;
+    }
   }
 </style>

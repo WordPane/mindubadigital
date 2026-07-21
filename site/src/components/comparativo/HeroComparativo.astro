@@ -27,22 +27,42 @@ import { comparativo } from '../../data/comparativo';
       </div>
 
       <div class="shot-frame frame-old" style="--scroll-time: 6s">
-        <img
-          src="/comparativo/site-antigo.jpg"
-          alt="Página completa do site antigo da Minduba Digital, feito em WordPress"
-          width="1100"
-          height="3789"
-          decoding="async"
-        />
+        <picture>
+          <source
+            type="image/avif"
+            srcset="/comparativo/site-antigo-750.avif 750w, /comparativo/site-antigo-1100.avif 1100w"
+            sizes="(max-width: 48rem) 94vw, 545px"
+          />
+          <img
+            src="/comparativo/site-antigo-1100.webp"
+            srcset="/comparativo/site-antigo-750.webp 750w, /comparativo/site-antigo-1100.webp 1100w"
+            sizes="(max-width: 48rem) 94vw, 545px"
+            alt="Página completa do site antigo da Minduba Digital, feito em WordPress"
+            width="1100"
+            height="3789"
+            fetchpriority="high"
+            decoding="async"
+          />
+        </picture>
       </div>
       <div class="shot-frame frame-new" style="--scroll-time: 9s">
-        <img
-          src="/comparativo/site-novo.jpg"
-          alt="Página completa do novo site da Minduba Digital"
-          width="1100"
-          height="5831"
-          decoding="async"
-        />
+        <picture>
+          <source
+            type="image/avif"
+            srcset="/comparativo/site-novo-750.avif 750w, /comparativo/site-novo-1100.avif 1100w"
+            sizes="(max-width: 48rem) 94vw, 545px"
+          />
+          <img
+            src="/comparativo/site-novo-1100.webp"
+            srcset="/comparativo/site-novo-750.webp 750w, /comparativo/site-novo-1100.webp 1100w"
+            sizes="(max-width: 48rem) 94vw, 545px"
+            alt="Página completa do novo site da Minduba Digital"
+            width="1100"
+            height="5831"
+            loading="lazy"
+            decoding="async"
+          />
+        </picture>
       </div>
 
       <span class="vs-badge" aria-hidden="true">VS</span>
@@ -169,15 +189,23 @@ import { comparativo } from '../../data/comparativo';
       grid-template-areas:
         'head-old'
         'frame-old'
+        'badge'
         'head-new'
         'frame-new';
     }
 
+    .shot-head {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.4rem;
+      margin-bottom: 0.75rem;
+    }
+
     .vs-badge {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      translate: -50% -50%;
+      grid-area: badge;
+      justify-self: center;
+      margin-top: -1.4rem;
+      margin-bottom: 0.4rem;
     }
   }
 </style>

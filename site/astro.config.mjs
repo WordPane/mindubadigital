@@ -5,7 +5,7 @@ import sitemap from '@astrojs/sitemap';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://mindubadigital.com.br',
-  integrations: [sitemap({ filter: (page) => !page.includes('/comparativo') })],
+  integrations: [sitemap()],
   build: {
     inlineStylesheets: 'always',
   },
